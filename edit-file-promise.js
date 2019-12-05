@@ -7,15 +7,16 @@ const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
 function editFile(filename) {
-  readFile(filename)
+  return readFile(filename)
     .then(data => {
       let obj = JSON.parse(data.toString());
       obj.firstName = faker.name.firstName();
       obj.lastName = faker.name.lastName();
-      writeFile(filename, JSON.stringify(obj))
+      let newData = JSON.stringify(obj);
+      return writeFile(filename, newData)
         .then(err => {
           if (err) throw err;
-          console.log(`${filename} has been successfully edited`);
+          return JSON.parse(newData);
         });
     });
 }

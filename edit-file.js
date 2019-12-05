@@ -8,7 +8,8 @@ function editFile(filename) {
     let obj = JSON.parse(data.toString());
     obj.firstName = faker.name.firstName;
     obj.lastName = faker.name.lastName;
-    fs.writeFile(filename, JSON.stringify(obj), (err) => {
+    let newData = JSON.stringify(obj);
+    fs.writeFile(filename, newData, (err) => {
       if(err) throw err;
       console.log(`${filename} has been successfully edited`);
     });
