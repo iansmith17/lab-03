@@ -16,7 +16,7 @@ async function editFile(filename) {
   let err = await writeFile(filename, JSON.stringify(obj));
 
   if (err) throw err;
-  console.log(`${filename} has been successfully edited`);
+  return obj;
 }
 
 module.exports = editFile;

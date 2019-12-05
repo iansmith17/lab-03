@@ -1,5 +1,7 @@
 'use strict';
 
-const editFile = require('./edit-file-async');
+const editFile = require('./edit-file-promise');
 
-editFile(process.argv[2]);
+editFile(process.argv[2]).then(result => {
+  console.log(result);
+});
